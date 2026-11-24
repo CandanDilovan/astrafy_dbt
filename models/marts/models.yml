@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: address_balances
+    description: >
+      Current balance per address over the last 3 months of available data,
+      excluding addresses involved in at least one coinbase transaction.
+      As only 3 months are read, the balance is a net flow over that window
+      and can be negative (money received before the window is not seen).
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: address
+        data_type: string
+        description: Bitcoin Cash address (cashaddr format).
+      - name: balance_satoshis
+        data_type: numeric
+        description: Received minus spent, in satoshis.
+      - name: balance_bch
+        data_type: numeric
+        description: Same balance in BCH (1 BCH = 100,000,000 satoshis).

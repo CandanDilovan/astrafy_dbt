@@ -1,0 +1,22 @@
+# dbt connection profiles (no secret here).
+# Both targets use Application Default Credentials (method: oauth):
+# - dev: your own Google account (gcloud auth application-default login)
+# - ci:  the dbt-runner service account, whose key is loaded by the
+#        google-github-actions/auth step of the workflow
+bitcoin_cash:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: oauth
+      project: astrafy-btc-test-dilovan
+      dataset: staging
+      location: US
+      threads: 4
+    ci:
+      type: bigquery
+      method: oauth
+      project: astrafy-btc-test-dilovan
+      dataset: staging
+      location: US
+      threads: 4

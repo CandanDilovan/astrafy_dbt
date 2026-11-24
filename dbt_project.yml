@@ -1,0 +1,17 @@
+name: bitcoin_cash
+version: "1.0.0"
+profile: bitcoin_cash
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+macro-paths: ["macros"]
+
+# Each folder writes into the BigQuery dataset of the same name
+# (created by Terraform). See macros/generate_schema_name.sql.
+models:
+  bitcoin_cash:
+    +materialized: table
+    staging:
+      +schema: staging
+    marts:
+      +schema: marts
